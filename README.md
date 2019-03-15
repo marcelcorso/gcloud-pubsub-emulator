@@ -1,6 +1,6 @@
 gcloud-pubsub-emulator
 ----------------------
-This repository contains the Docker configuration for Google's PubSub emulator.
+This repository contains the Docker configuration for Google's PubSub emulator. It's mainly the dockerization and documentation of https://github.com/prep/pubsubc 
 
 Installation
 ------------
@@ -33,10 +33,10 @@ export PUBSUB_EMULATOR_HOST=localhost:8681
 ```
 
 ### Automatic topic and subscription creation
-This image also provides the ability to create topics and subscriptions in projects on startup by specifying the `PUBSUB_PROJECT` environment variable with a sequentual number appended to it, starting with _1_. The format of the environment variable is simple:
+This image also provides the ability to create topics and subscriptions in projects on startup by specifying the `PUBSUB_PROJECT` environment variable with a sequentual number appended to it, starting with _1_. The format of the environment variable is relatively simple:
 
 ```
-PROJECTID,TOPIC1,TOPIC2:SUBSCRIPTION1,SUBSCRIPTION2,TOPIC3:SUBSCRIPTION3
+PROJECTID,TOPIC1,TOPIC2:SUBSCRIPTION1:SUBSCRIPTION2,TOPIC3:SUBSCRIPTION3
 ```
 
 A comma-separated list where the first item is the _project ID_ and the rest are topics. The topics themselves are colon-separated where the first item is the _topic ID_ and the rest are _subscription IDs_. A topic doesn't necessarily need to specify subscriptions.
