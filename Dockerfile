@@ -5,7 +5,8 @@ RUN apk update && apk upgrade && apk add --no-cache curl git
 RUN curl -s https://raw.githubusercontent.com/eficode/wait-for/master/wait-for -o /usr/bin/wait-for
 RUN chmod +x /usr/bin/wait-for
 
-RUN go get github.com/prep/pubsubc
+# Install pubsubc, with a patch for push endpoint support
+RUN go install github.com/tomwalder/pubsubc@aded9416d1f3804a48a1371cb1d25aeab8073de1
 
 ###############################################################################
 
