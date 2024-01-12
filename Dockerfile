@@ -1,4 +1,4 @@
-FROM golang:alpine as builder
+FROM golang:alpine AS builder
 
 RUN apk update && apk upgrade && apk add --no-cache curl git
 
@@ -16,7 +16,9 @@ COPY --from=builder /usr/bin/wait-for /usr/bin
 COPY --from=builder /go/bin/pubsubc   /usr/bin
 COPY                run.sh            /run.sh
 
-RUN apk --update add openjdk8-jre netcat-openbsd && gcloud components install beta pubsub-emulator
+# Install Java and the Pub/Sub emulator gcloud component
+RUN apk --no-cache add openjdk8-jre netcat-openbsd \
+    && gcloud components install beta pubsub-emulator
 
 EXPOSE 8681
 
